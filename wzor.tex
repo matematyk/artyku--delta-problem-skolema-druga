@@ -1,0 +1,299 @@
+\documentclass[leqno,10pt]{article}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{hyperref}
+\def\Z{\mathbb Z}
+\def\Q{\mathbb{Q}}
+\def\A{\mathbb{A}}
+
+\makeatletter
+\renewcommand{\ALG@name}{Algorytm}
+\makeatother
+
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{delta}
+\def\marg#1{\marginpar{\scriptsize\raggedright#1}}
+
+\begin{document}
+
+\wtyt{Problem Skolema}
+
+\waut{Marcin Wierzbiński*}
+
+\marg{Student, Wydział Matematyki, Informatyki i Mechaniki, Uniwersytet Warszawski}
+
+Wiele matematycznych problemów ma bardzo proste sformułowanie, ale ich istota dotyka głębokiej matematyki. Przykładem takiego problemu jest tytułowy problem Skolema. Sformułowanie wydaje się bliskie informatyce teoretycznej, zainteresowany czytelnik znający tzw. problem stopu, może zauważyć tutaj analogię. Natomiast techniki służące do rozwiązania problemu pochodzą z algebry i, na dodatek, pełne rozwiązanie wymagałoby istotnych postępów w tej dziedzinie.
+
+Zacznijmy od rozważenia takiego oto pytania: Czy dany liniowy ciąg rekurencyjny (np. ciąg Fibonacciego (\ref{fib})) ma pewien wyraz równy zero? \marg{
+Kolejne wyrazy ciągu Fibonacciego: $0, 1, 1, 2, 3, 5, 8, 13, \ldots$
+} Każdy bez trudu odpowie na to pytanie dla ciągu Fibonacciego,. Tylko dla $n=0$ wyraz $F_0 = 0$ jest równy zero. 
+\begin{equation}\label{fib}
+    \begin{cases}
+        F_{n} = F_{n-1} + F_{n-2} \\
+        F_{1} = 1 \\ 
+        F_{0} = 0
+    \end{cases}
+\end{equation}
+Kolejne wyrazy ciągu Fibonacciego $F_n$ zawsze będą dodatnie (suma wyrazów dodatnich jest dodatnia). Nie potrzebujemy do tego zaawansowanej matematyki. 
+Czy odpowiedź na to pytanie dla dowolnego ciągu jest taka prosta?
+Rozważmy na przykład następujący ciąg: \marg{Kolejne wyrazy dla tego ciągu to: 0, 1, 2, 1, -4, -11, -10, 13, 56, 73, -22, -263 \ldots}
+\begin{equation}\label{ref:fib}
+    \begin{cases}
+         u_n = 2 u_{n-1} - 3 u_{n-2} \\
+         u_1 = 1 \\
+         u_0 = 0
+    \end{cases}
+\end{equation}
+
+Na pierwszy rzut oka, problem nie jest łatwy do rozstrzygnięcia. Wypisując kolejne wyrazy, możemy wysnuć hipotezę, że owy ciąg również poza pierwszym nie ma wyrazu zerowego. Problem można sformułować w ogólności, dla większej ilości równań. W tym artykule postaramy się pokazać, że już dla prostych równań za rozwiązaniem stoi ciekawa matematyka. 
+
+%Znamy problemy, które mają trochę inna naturę. Mamy program, w którym jest pelta np. taki:
+
+%\begin{algorithm}[H] 
+%\SetAlgoLined
+%        \begin{algorithmic}[l]
+%        \State $\vec{x} := \vec{a}, \quad \vec{u}, \vec{a} \in \mathbb{Z}^{k}$  \algorithmiccomment{Wejście}
+%        \While { $u^{T}\cdot \vec{x} \neq 0$ }
+%          \State $\vec{x} := M \vec{x}$ \algorithmiccomment{$M \in \Z^{k \times k}$}
+          
+%        \EndWhile
+%        \end{algorithmic}
+% \caption{Pętla}
+%\end{algorithm}
+%Pytamy się o to, czy jeśli mając modyfikowany wektor $\vec{x}$ w kolejnych krokach wykonania pętli, kiedyś np. w $n$-tym kroku w iloczynie skalanym z wektorem $\vec{u}$ się zatrzyma. Oczywiście nasze rozważania są na tyle teoretyczne, że zakładamy że mamy nieskończoną pamięć, współczynniki z wektora $x$ mogą bardzo szybko rosnąć od nieskończoności. 
+
+%Czy problemu stopu pętli z powyższego algorytmu, można wyrazić jakoś inaczej? Wprowadźmy kilka użytecznych definicji, aby zauważyć, że problem stopu dla tego algorytmu jest bliski tytułowemu problemowi Skolema. 
+
+    
+
+\vfill
+\mtyt{Problem Skolema}
+
+\marg{Liniowa rekurencja jest fundamentem wielu pojęć w informatyce czy kombinatoryce. 
+}
+
+Wprowadźmy potrzebne definicje. Liniowy ciąg rekurencyjny to ciąg liczb całkowitych $u_0, \ldots, u_{k-1} \in \mathbb{Z}$, taki, że dla pewnych $a_0 \neq$ 0 $a_0, \ldots, a_{k-1} \in \mathbb{Z}$ oraz dla każdego $n \in \mathbb{N}$, $n \geq k$ mamy $u_{n}=a_{0} u_{n-1}+a_{1} u_{n-2}+\ldots+a_{k-1} u_{n-k}$. Rząd takiego układu to $k$.
+
+\textbf{Problem Skolema}, to pytanie, czy dla danego liniowego ciągu rekurencyjego, istnieje takie $n$, że $u_n = 0$?
+\marg{
+Albert Thoralf Skolem (ur. 23 maja 1887 w Sandsvaer, zm. 23 marca 1963)
+}
+
+Obecnie znane są rezultaty dla liniowych równań rzędu $2,3$ i $4$, dla których umiemy sprawdzić, czy dane liniowe równanie rekurencyjne dla pewnego $n$ ma wyraz zerowy. W szczególności, rozstrzygalność problemu Skolema pozostaje nadal otwarta dla rzędu $5$. Znamy natomiast rozstrzygalność różnych podprzypadków dla rzędu $5$. 
+
+Okazuje się, że już dla równań rzędu $2$ rozwiązanie jest nietrywialne. W artykule postaramy się przedstawić intuicje stojące za ową nietrywialnością.
+
+\textbf{Redukcja:}
+Każdy liniowy ciąg rekurencyjny można się przedstawić w postaci:
+$$
+u_n = p_1(n) \lambda_1^n + p_2(n) \lambda_2^n + … + p_j(n) \lambda_j^n,
+$$
+gdzie $p_1(n), \ldots, p_j(n)$ to wielomiany zależne od $n$, a $\lambda_1$ \ldots $\lambda_j$ to liczby zespolone. 
+
+Uzasadnijmy w skrócie redukcje. 
+Okazuje się, że można każdy liniowy rekurencyjny ciąg zapisać w postaci:
+\begin{equation}
+    u_n = v^{T}M^{n}w \textbf{,}
+\end{equation}
+gdzie $v, w \in \mathbb{Z}^{k}, M \in \mathbb{Z}^{k\times k}$, $v^{T}$ oznacza transpozycje wektora $v$ i odpowiednio: 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c c}
+           $
+        M = \begin{bmatrix}
+        a_{k-1} & 1 & \ldots & 0 & 0 \\
+        a_{k-2} & 0 & \ldots & 0 & 0 \\
+        \vdots & 0 & \ldots & 1 & 0 \\ 
+        a_1 & 0 & \ldots & 0 & 1 \\
+        a_0 & 0 & \ldots & 0 & 0
+        \end{bmatrix}
+         $
+        &
+        $v= \begin{bmatrix}
+                u_{k-1} \\ u_{k-2} \\ \vdots \\ u_{0} \\
+                \end{bmatrix}
+                w =  \begin{bmatrix}
+                0 \\ 0 \\ \vdots \\ 1 \\
+                \end{bmatrix}
+        $
+        \end{tabular}
+\end{table}
+
+\marg{
+    Opisana redukcja jest bardzo użyteczna. Wiemy, że potęgowanie liczby $x$ do $n$ można wykonać w czasie $\mathcal{O}(\log(n))$. Ta sama zasada stosuje się w przypadku potęgowania macierzy. A zatem korzystając z postaci macierzowej możemy np. obliczyć $n$-tą liczbę Fibonacciego używając $\mathcal{O}(\log(n))$ operacji arytmetycznych.
+}
+Do pokazania równoważności liniowego ciągu rekurencyjnego i postaci macierzowej korzysta się z takich wyników jak rozwinięcie Laplace dla macierzy $M$ i Twierdzenie Cayleya–Hamiltona. W drugą stronę stosuje się indukcje po $n$.
+
+Jeśli wszystkie wartości własne $M$ są różne, to $D$ jest macierzą diagonalną złożonych z wartości własnych $\lambda_1,\ldots \lambda_k$. W kolejnym kroku korzysta się z rozkładu diagonalnego macierzy $M = P D P^{-1}$, gdzie $P$ jest odwracalną macierzą przejścia, jej kolumny to wektory własne dla macierzy $M$. 
+
+\marg{Przypomnijmy, że wektor $v$ jest \emph{wektorem własnym} macierzy $M$ jeśli $Mv = \lambda v$, czyli intuicyjnie rzecz biorąc przekształcenie $M$ jedynie wydłuża lub skraca $v$, ale go nie obraca w żaden sposób. Wartość $\lambda$ jest nazywana \emph{wartością własną} $M$.} Macierz $P$ jak i $D$ ma maksymalny rząd, podobnie dla $P$ i $J$ w przypadku rozkładu Jordana.
+
+\begin{equation*}
+    u_n = v^{t}M^{n}w = 
+    \begin{bmatrix}
+       u_{k-1} & u_{k-2} & \ldots & u_0\\
+    \end{bmatrix}
+    P
+    \underbrace{
+        \begin{bmatrix}
+        \lambda_{1}^{n} & & \\
+        & \ddots & \\
+        & & \lambda_{k}^{n}
+      \end{bmatrix}
+    }_{D^{n}}
+    P^{-1}
+    \underbrace{
+    \begin{bmatrix}
+       0 \\ 0 \\ \vdots \\ 1 \\
+    \end{bmatrix}
+    }_{w}
+\end{equation*}
+
+Po wymnożeniu macierzy otrzymujemy, że nasza ma formę: $u_n = p_1(n) \lambda_1^n + p_2(n) \lambda_2^n + \ldots + p_k(n) \lambda_k^n$, gdzie $p_i(n)$ jest wielomianem stałym. 
+
+
+W przypadku wielokrotnych wartości własnych stosujemy rozkład Jordana, różni się on bardzo niewiele od diagonalnego.
+Macierz $M$ zapisujemy jako iloczyn $M = P J P^{-1}$, gdzie $J$ ma specjalną postać tzw. klatek Jordana $J_k$
+
+
+Wówczas formuła:
+\begin{equation*}
+    u_n = v^{t}M^{n}w = 
+    {v^{t}}
+    P
+    \underbrace{
+        \begin{bmatrix}
+        J_1^{n} & \;     & \; \\
+        \;  & \ddots & \; \\ 
+        \;  & \;     & J_p^{n}\end{bmatrix}
+    }_{J^{n}}
+    P^{-1}
+    \underbrace{
+    \begin{bmatrix}
+       0 \\ 0 \\ \vdots \\ 1 \\
+    \end{bmatrix}
+    }_{w}
+\end{equation*}
+$J_i$ blok jest kwadratową macierzą:
+\marg{Nietrudno pokazać indukcyjnie, że $n$- ta potęgą macierzy macierzy $J_k$ jest faktycznie takiej postaci}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c c}
+        $J_k = 
+        \begin{bmatrix}
+        \lambda_k & 1            & \;     & \;  \\
+        \;        & \lambda_k    & \ddots & \;  \\
+        \;        & \;           & \ddots & 1   \\
+        \;        & \;           & \;     & \lambda_k       
+        \end{bmatrix},
+        $  &
+        $J_k^n = \begin{bmatrix}
+        \lambda_k^n & \binom{n}{1}\lambda_k^{n-1} & \binom{n}{2}\lambda_k^{n-2} & \cdots  & \binom{n}{k-1}\lambda_k^{n-k+1} \\
+         & \lambda_k^n & \binom{n}{1}\lambda_k^{n-1} & \cdots  & \binom{n}{k-2}\lambda_k^{n-k+2} \\
+         &  & \ddots & \ddots  & \vdots\\
+         &  & & \ddots  & \vdots\\
+         &  & &  &  \binom{n}{1}\lambda_k^{n-1}\\
+         &  &  &    & \lambda_k^n
+        \end{bmatrix}$ 
+        \end{tabular}
+\end{table}
+
+
+Po wymnożeniu z danej klatki otrzymujemy wektor co najmniej. Zauważmy, że $\binom{n}{k-1}$ to wielomian stopnia $k-1$.
+
+
+%Dalsze szczególny nie są istotne dla naszego artykułu. 
+
+
+
+
+
+\vfill
+\mtyt{Równania rekurencyjne rzędu 2}
+
+W dalszej części przedstawię techniki związane z rozwiązaniem problemu Skolema dla liniowego równania rekurencyjnego rzędu 2. Rozwiązanie będzie zależało od wartości własnych macierzy ciągu. Prześledzimy je na kilku przykładach, które zilustrują techniki rozwiązywania naszego problemu w różnych przypadkach.
+
+\textbf{Różne moduły $\lambda_1$ i $\lambda_2$}\\
+Rozważmy jeszcze raz ciąg Fibonacciego. Na początek zobaczmy jak rozkład macierzy pozwala nam uzyskać wzór jawny na $n$-ty wyraz ciągu. Korzystając z twierdzenia w sposób jawnie wyrażamy $n$-ty wyraz ciągu Fibonacciego:
+\begin{equation*}
+    F_{n} = \frac{\lambda_1 \lambda_2^{n+1}-\lambda_2 \lambda_1^{n+1}}{\sqrt{5}} = \frac{\lambda_1^{n+1}\lambda_2\left(\left(\frac{\lambda_2}{\lambda1}\right)^{n}-1\right)}{\sqrt{5}}
+\end{equation*}
+
+Możemy teraz ponownie (lecz inaczej) wykazać, że ciąg Fibonacciego nie ma wyrazów zerowych poza $F_0$. Wystarczy zaobserwować, że $F_n = 0$ wtedy i tylko wtedy, gdy $(\frac{\lambda_2}{\lambda_1})^{n}=1$. Można łatwo zauważyć, że nie jest to możliwe dla $n > 0$, ponieważ $|\lambda_1| > |\lambda_2|$.
+Podobnymi technikami można pokazać, że dla dowolnego ciągu, którego macierz ma dwie wartości własne o różnych modułach od pewnego momentu wyrazy nie mogę być równe zero. Wówczas do sprawdzenia, czy istnieje jakikolwiek wyraz zerowy wystarczy jedynie zbadać zerowość pewnej liczby początkowych wyrazów ciągu.
+
+\textbf{Równe współczynniki $\lambda_1$, $\lambda_2$}\\
+Rozważmy kolejny przykład ciągu:
+\begin{equation}\label{przyk:3}
+    \begin{cases}
+        u_n = -2 u_{n-1} - u_{n-2} \\
+        u_1 = 0 \\
+        u_0 = 1
+    \end{cases}
+\end{equation}
+Kolejne wyrazy tego ciągu to $1, 0, -1, 2, -3, 4, -5, 6, -7, 8 \ldots$, więc również spodziewamy się, że tylko $u_1 = 0$.
+
+Podobnie jak poprzednio, opierając się o twierdzenie możemy jawnie wyrazić wyraz $u_{n}$ jako:
+\begin{equation*}
+    u_n = \lambda_{1}^n + \lambda_{1}^{n-1} n
+\end{equation*}
+Wykazanie, czy istnieje $n$ takie, że $u_n=0$ staje się proste. A zatem $u_n = 0$ jeśli $\lambda_1 + n = 0$, czyli gdy $n = -\lambda_1 = 1$.
+
+Nietrudno pokazać, że z kolei tą metodą można rozwiązać dowolny przypadek, gdy mamy dwukrotną wartość własną.
+
+\textbf{Ostatni przypadek}\\
+Przed nami najciekawsza cześć, przypadek gdy $|\lambda_1| = |\lambda_2|$, ale $\lambda_1 \neq \lambda_2$.
+Rozważmy nasz przykład (\ref{ref:fib}) ze wstępu. 
+Obliczenie współczynników daje: $\lambda_1 = 1 - i\sqrt{2}$, $\lambda_2 = 1 + i \sqrt{2}$. Zauważmy, że co do modułów wartości własne są równe. 
+Okazuje się, że ten przypadek jest szczególnie interesujący i wymaga trochę więcej uwagi. 
+
+Nasze równanie można zapisać w postaci\marg{Zainteresowany czytelnik może przeczytać o liczbach zespolonych: \href{http://www.deltami.edu.pl/temat/matematyka/algebra/2016/09/30/Liczby_zespolone_i_kwaterniony/}{Delta, październik 2016:
+Liczby zespolone i kwaterniony}}
+\begin{equation*}
+    u_{n} = \frac{i}{2 \sqrt{2}}(\lambda_{1}^{n}- \lambda_2^{n})
+\end{equation*}
+Przeniesiemy teraz nasze rozważania na grunt uogólniony. 
+
+Mianowicie można nietrudno pokazać, że nasze równanie będzie przyjmowało postać $u_n = a \lambda_1^{n} + \overline{a} \lambda_2^{n}$, dla pewnej liczby algebraicznej $a \in \mathbb{A}$ i \marg{
+    Powiemy, że $a $ jest liczbą algebraiczną, jeżeli jest pierwiastkiem niezerowego wielomianu o współczynnikach wymiernych. Zbiór liczb algebraicznych oznaczmy jako $\mathbb{A}$. Liczba $\sqrt{2}$ jest liczbą algebraiczną wielomianu $p(x) = x^{2} - 2$
+} liczb zespolonych takich, że $\lambda_1 = \overline{\lambda_2}$.
+
+Pytając się o warunek $u_n = 0$, możemy zauważyć, że $a \lambda_1^{n} + \overline{a} \overline{\lambda_1}^{n} = 0 $ wtedy i tylko wtedy, gdy cześć rzeczywista $a {\lambda_1^{n}}$ jest równa $0$. 
+Weźmy: $v = \frac{\lambda_1}{|\lambda_1|} $ wówczas $|v| = 1$.
+Wystarczy sprawdzić, czy $\frac{u_n}{|\lambda_1|^n} = 0$, czyli, czy $a v^{n} + \overline{a} \overline{v} ^{n} = 0$.
+To zaś jest równoważne temu, że $a v^{n}$ jest czysto urojone (postaci $ix$ dla $x \in \mathbb{R}$). Ponieważ $|v| = 1$, to musi być $x = |a|$. Pytamy więc, czy istnieje takie $n$, że $v^{n} = \frac{i |a|}{a}$.
+
+Pozostaje nam rozwiązać równanie postaci
+\begin{equation*}
+    v^{n} = \beta, \text{ gdzie } v, \beta \in \A, |v| = |\beta| = 1.
+\end{equation*}
+To w ogólności wymaga pochylenia się nad teorią liczb algebraicznych. Jednak dla sprawnego algebraika, takie równania nie stanowią problemu. Dla równań rzędu $3$ również znamy algorytm bazujący na podobnym rozumowaniach, jednak w ogólności dla $k>5$ nie jest znane żadne rozwiązanie problemu Skolema. 
+
+
+%\mtyt{Twierdzenie Skolema-Malhera-Lecha}
+
+%Skoro potrzebna jest dosyć zaawansowana matematyka, by rozwiązać problem Skolema rzędu 2, to możemy zastanowić się przynajmniej nad charakterem rozkładu zer. Twierdzenie Skolema-Malhera-Lecha w teorii liczb algebraicznych jest znaczącym uogólnieniem oczywistego stwierdzenia, że wielomian albo ma skończoną liczbę zer, albo jest zerowy. Z tego twierdzenia możemy wywnioskować o rozkładzie zer.  
+
+%Rozważmy to na przykładzie. Weźmy taki ciąg: 
+%$0, 0, 1, 0, 1, 0, 2, 0, 3, 0, 5, ...$ zadany wzorem:
+%\begin{equation*}
+%    \begin{cases}
+%        u_{n}=u_{n-2}+u_{n-4} \\
+%        u_1 = u_2 = u_4 = 0  \\
+%        u_3 = 1
+%    \end{cases}
+%\end{equation*}
+
+%Jest to zmodyfikowany ciąg Fibonacciego. 
+%Dla tego szeregu, $u_n = 0$ wtedy i tylko wtedy gdy $n$ jest zero lub jest parzysty. Zbiór indeksów może być podzielone na zbiór skończony $\{1\}$ i ciąg arytmetyczny (w tym przypadku liczby parzyste). 
+
+%I w ogólności zbiór indeksów wyrazów zerowych może być podzielony na zbiór skończony i skończoną liczbę ciągów arytmetycznych. 
+%To dosyć ciekawe twierdzenie.  Czy będzie ono pomocne w pracach nad problemem Skolema? Czas pokaże. 
+
+
+
+
+
+\end{document}
+

@@ -1,0 +1,85 @@
+\usepackage[hoffset={.2cm},voffset={1.7cm},papersize={216mm,301mm}]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{multicol}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[polish]{babel}
+\usepackage{polski}
+\usepackage{microtype}
+\usepackage{ragged2e}
+\usepackage[cmyk]{xcolor}
+\usepackage[Export,etex]{adjustbox}
+\usepackage[strict]{changepage}
+\usepackage{lmodern}
+
+\font\numerodc=plr10 scaled\magstep4
+
+\newdimen\kor
+
+\def\@oddfoot{\noindent\hskip\kor\font\num=plssbx10 scaled\magstep1%
+\Magenta{\num\thepage}\hfill}
+%\makeatother
+
+\flushbottom
+\exhyphenpenalty=10000
+\hyphenpenalty=10000
+\pretolerance=8000
+\tolerance=8000
+\raggedright
+
+\medmuskip4mu minus1mu
+\thinmuskip3mu minus1mu
+\thickmuskip5mu minus1mu
+\parskip6pt plus2pt minus1pt
+\advance\footskip by-6pt
+
+\let\int=\intop
+\reversemarginpar
+
+\parindent=0pt
+
+\marginparsep.3cm
+\marginparwidth5.2cm
+
+\textwidth12.5cm
+\textheight 25.2cm
+\topmargin -3.3cm
+\oddsidemargin 4.2cm
+\evensidemargin 2.6cm
+
+\abovedisplayskip3pt plus2pt minus1pt
+\belowdisplayskip3pt plus2pt minus1pt
+\abovedisplayshortskip0pt minus3pt\belowdisplayshortskip3pt plus2pt minus1pt
+
+% DEFINICJE TYTULOW
+\long\def\Magenta#1{{\color{magenta}#1}}
+\long\def\Black#1{\textcolor{black}{#1}}
+\def\blackDelta{\colorlet{magenta}{black}}
+
+\newcommand{\seventeentyt}{\@setfontsize\seventeentyt{17.7}{20}}%=plbx10 scaled\magstep3
+\newcommand{\fourteen}{\@setfontsize\fourteentyt{14.8}{16.8}}%=plbx10 scaled\magstep2
+\newcommand{\twelvetyt}{\@setfontsize\twelvetyt{12.4}{13.4}}%=plbx10 scaled\magstep1
+        
+\long\def\wtyt#1{{\Magenta{\seventeentyt\bf\boldmath\spaceskip7pt#1\par}}}
+
+\def\waut#1{{\fourteen\it\spaceskip8pt#1}}
+
+\long\def\madetyt#1{\vbox{\Magenta{\fourteen\bf\spaceskip8pt#1}}}
+
+\long\def\mtyt#1{\font\xtwelvetyt=plbx10 scaled\magstep1
+\vbox{\Magenta{\twelvetyt\bf\spaceskip5pt#1}}}
+
+\newenvironment{szeroko}
+{\begin{adjustwidth}{-5.5cm}{}}
+{\end{adjustwidth}}
+
+\newenvironment{dwieszpalty}{\begin{adjustwidth}{-5.5cm}{}
+\begin{multicols}2\long\def\marg##1{\par{\scriptsize\Magenta{##1}\par}}}{\end{multicols}\end{adjustwidth}}
+\def\d{{\rm d}}
+\def\dc{,,}
+
+\def\marg#1{\marginpar{\scriptsize\raggedright#1}}
