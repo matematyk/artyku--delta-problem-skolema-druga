@@ -23,11 +23,11 @@
 
 \marg{Student, Wydział Matematyki, Informatyki i Mechaniki, Uniwersytet Warszawski}
 
-Wiele matematycznych problemów ma bardzo proste sformułowanie, ale ich istota dotyka głębokiej matematyki. Przykładem takiego problemu jest tytułowy problem Skolema. Sformułowanie wydaje się bliskie informatyce teoretycznej, zainteresowany Czytelnik znający tzw. problem stopu, może zauważyć tutaj analogię. Natomiast techniki służące do rozwiązania problemu pochodzą z algebry i, na dodatek, pełne rozwiązanie wymagałoby istotnych postępów w tej dziedzinie.
+Wiele matematycznych problemów ma bardzo proste sformułowanie, ale ich istota dotyka głębokiej matematyki. Przykładem takiego problemu jest tytułowy problem Skolema. Sformułowanie wydaje się bliskie informatyce teoretycznej zainteresowany Czytelnik znający tzw. problem stopu, może zauważyć tutaj analogię. Techniki służące do rozwiązania problemu podchodzą jednak nie z informatyki teoretycznej, a z algebry. Pewne rozwiązanie przy pomocy technik wymagałoby istotnych postępów w tej dziedzinie.
 
-Zacznijmy od rozważenia takiego oto pytania: Czy dany liniowy ciąg rekurencyjny (np. ciąg Fibonacciego (\ref{fib})) ma pewien wyraz równy zero? \marg{
+Zacznijmy od rozważenia takiego oto pytania: czy dany liniowy ciąg rekurencyjny (np. ciąg Fibonacciego (\ref{fib})) ma pewien wyraz równy zero? \marg{
 Kolejne wyrazy ciągu Fibonacciego: $0, 1, 1, 2, 3, 5, 8, 13, \ldots$
-} Każdy bez trudu odpowie na to pytanie dla ciągu Fibonacciego. Tylko dla $n=0$ wyraz $F_0 = 0$ jest równy zero. 
+} Każdy bez trudu odpowie na to pytanie dla ciągu Fibonacciego, ponieważ tylko dla $n=0$ wyraz $F_0 = 0$ jest równy zero. 
 \begin{equation}\label{fib}
     \begin{cases}
         F_{n} = F_{n-1} + F_{n-2} \\
@@ -36,7 +36,7 @@ Kolejne wyrazy ciągu Fibonacciego: $0, 1, 1, 2, 3, 5, 8, 13, \ldots$
     \end{cases}
 \end{equation}
 Kolejne wyrazy ciągu Fibonacciego $F_n$ zawsze będą dodatnie (suma wyrazów dodatnich jest dodatnia). Nie potrzebujemy do tego zaawansowanej matematyki. 
-Czy odpowiedź na to pytanie dla dowolnego ciągu jest taka prosta?
+Czy odpowiedź na postawione wyżej pytanie dla dowolnego ciągu jest taka prosta?
 Rozważmy na przykład następujący ciąg: \marg{Kolejne wyrazy dla tego ciągu to: 0, 1, 2, 1, -4, -11, -10, 13, 56, 73, -22, -263 \ldots}
 \begin{equation}\label{ref:fib}
     \begin{cases}
@@ -46,7 +46,7 @@ Rozważmy na przykład następujący ciąg: \marg{Kolejne wyrazy dla tego ciągu
     \end{cases}
 \end{equation}
 
-Na pierwszy rzut oka problem nie jest łatwy do rozstrzygnięcia. Wypisując kolejne wyrazy, możemy wysnuć hipotezę, że owy ciąg również poza pierwszym nie ma wyrazu zerowego. Problem można sformułować w ogólności, dla większej ilości równań. W tym artykule postaramy się pokazać, że już dla prostych równań za rozwiązaniem stoi ciekawa matematyka. 
+Na pierwszy rzut oka problem nie jest łatwy do rozstrzygnięcia. Wypisując kolejne wyrazy, możemy wysnuć hipotezę, że owy ciąg również poza pierwszym nie ma wyrazu zerowego. Problem można sformułować w ogólności dla większej ilości równań. W tym artykule postaram się pokazać, że za rozwiązaniem nawet dla prostych równań za rozwiązaniem stoi ciekawa matematyka. 
     
 
 \vfill
@@ -62,15 +62,15 @@ Wprowadźmy potrzebne definicje. Liniowy ciąg rekurencyjny to ciąg liczb całk
 Albert Thoralf Skolem (ur. 23 maja 1887 w Sandsvaer, zm. 23 marca 1963)
 }
 
-Obecnie wiadomo, że problem Skolema jest rozstrzygalny dla ciągów rzędu $2$, $3$ i $4$, natomiast rozstrzygalność dla rzędu $5$ pozostaje nadal otwarte. Znamy jednak rozstrzygalność różnych podprzypadków nawet dla rzędu $5$. 
+Obecnie wiadomo, że problem Skolema jest rozstrzygalny dla ciągów rzędu $2$, $3$ i $4$, natomiast rozstrzygalność dla rzędu $5$ pozostaje nadal otwarta. Znamy jednak rozstrzygalność różnych podprzypadków nawet dla rzędu $5$. 
 
-Okazuje się, że już dla równań rzędu $2$ rozwiązanie jest nietrywialne. W artykule postaramy się przedstawić intuicje stojące za ową nietrywialnością. Bardzo przydatna będzie znany zapewne niektórym Czytelnikom własność ciągów rekurencyjnych.
+Okazuje się, że już dla równań rzędu $2$ rozwiązanie nie jest trywialne. W artykule postaram się przedstawić intuicje stojące za ową nietrywialnością. Bardzo przydatna będzie, znany zapewne niektórym Czytelnikom, własność ciągów rekurencyjnych.
 
 \textbf{Twierdzenie:}
 Dla każdego liniowego ciągu rekurencyjnego $u_n$ rzędu $k$ można obliczyć
 liczby zespolone $\lambda_1, \ldots, \lambda_j$
 oraz wielomiany $p_1, \ldots, p_j$
-takie, że
+takie, że:
 \[
 u_n = p_1(n) \lambda_1^n + p_2(n) \lambda_2^n + … + p_j(n) \lambda_j^n,
 \]
@@ -81,7 +81,7 @@ oraz
 gdzie przez $\deg(p)$ oznaczamy stopień wielomianu $p$.
 
 
-Dla zainteresowanego Czytelnika znającego podstawowe narzędzia z algebry liniowej to twierdzenie nie jest trudno udowodnić. 
+Dla zainteresowanego Czytelnika znającego podstawowe narzędzia z algebry liniowej to twierdzenie nie jest to trudne do udowodnienia. 
 
 
 \vfill
@@ -91,7 +91,7 @@ Dla zainteresowanego Czytelnika znającego podstawowe narzędzia z algebry linio
 W dalszej części przedstawię techniki związane z rozwiązaniem problemu Skolema dla liniowego ciągu rekurencyjnego rzędu 2. Rozwiązanie będzie zależało od współczynników, które występują w twierdzeniu powyżej. Prześledzimy je na kilku przykładach, które zilustrują techniki rozwiązywania naszego problemu w różnych przypadkach.
 
 \textbf{Różne moduły $\lambda_1$ i $\lambda_2$}\\
-Rozważmy jeszcze raz ciąg Fibonacciego. Na początek zobaczmy jak uzyskać wzór jawny na $n$-ty wyraz ciągu. Stosując twierdzenie wiemy, że $n$-ty wyraz ciągu Fibonacciego:
+Rozważmy jeszcze raz ciąg Fibonacciego. Na początek zobaczmy, jak uzyskać wzór jawny na $n$-ty wyraz ciągu. Stosując twierdzenie, wiemy, że $n$-ty wyraz ciągu Fibonacciego to:
 \begin{equation*}
     F_{n} = \frac{\lambda_1 \lambda_2^{n+1}-\lambda_2 \lambda_1^{n+1}}{\sqrt{5}} = \frac{\lambda_1^{n+1}\lambda_2\left(\left(\frac{\lambda_2}{\lambda1}\right)^{n}-1\right)}{\sqrt{5}}
 \end{equation*}
@@ -99,7 +99,7 @@ Warto zaznaczyć, że jawne obliczenie $\lambda_1$ i $\lambda_2$ to prześledzen
  
 
 Możemy teraz ponownie (lecz inaczej) wykazać, że ciąg Fibonacciego nie ma wyrazów zerowych poza $F_0$. Wystarczy zaobserwować, że $F_n = 0$ wtedy i tylko wtedy, gdy $(\frac{\lambda_2}{\lambda_1})^{n}=1$. Można łatwo zauważyć, że nie jest to możliwe dla $n > 0$, ponieważ $|\lambda_1| > |\lambda_2|$.
-Podobnymi technikami można pokazać, że dla dowolnego ciągu, którego macierz ma dwie wartości własne o różnych modułach od pewnego momentu wyrazy nie mogę być równe zero. Wówczas do sprawdzenia, czy istnieje jakikolwiek wyraz zerowy wystarczy jedynie zbadać zerowość pewnej liczby początkowych wyrazów ciągu.
+Przy pomocy podobnych technik można pokazać, że dla dowolnego ciągu, którego macierz ma dwie wartości własne o różnych modułach, od pewnego momentu wyrazy nie mogę być równe zero. Wówczas do sprawdzenia, czy istnieje jakikolwiek wyraz zerowy, wystarczy jedynie sprawdzić zerowanie się pewnej liczby początkowych wyrazów ciągu.
 
 \textbf{Równe współczynniki $\lambda_1$, $\lambda_2$}\\
 Rozważmy kolejny przykład ciągu:
@@ -110,13 +110,13 @@ Rozważmy kolejny przykład ciągu:
         u_0 = 1
     \end{cases}
 \end{equation}
-Kolejne wyrazy tego ciągu to $1, 0, -1, 2, -3, 4, -5, 6, -7, 8 \ldots$, więc również spodziewamy się, że tylko $u_1 = 0$.
+Kolejne wyrazy tego ciągu to: $1, 0, -1, 2, -3, 4, -5, 6, -7, 8 \ldots$, więc również spodziewamy się, że tylko $u_1 = 0$.
 
 Podobnie jak poprzednio, opierając się o twierdzenie możemy jawnie wyrazić wyraz $u_{n}$ jako:
 \begin{equation*}
     u_n = \lambda_{1}^n + \lambda_{1}^{n-1} n
 \end{equation*}
-Wykazanie, czy istnieje $n$ takie, że $u_n=0$ staje się proste. A zatem $u_n = 0$ jeśli $\lambda_1 + n = 0$, czyli gdy $n = -\lambda_1 = 1$.
+Wykazanie, czy istnieje $n$ takie, że $u_n=0$ staje się proste. A zatem $u_n = 0$, jeśli $\lambda_1 + n = 0$, czyli gdy $n = -\lambda_1 = 1$.
 
 Nietrudno pokazać, że z kolei tą metodą można rozwiązać dowolny przypadek, gdy mamy dwukrotną wartość własną.
 
@@ -126,7 +126,7 @@ Rozważmy nasz przykład (\ref{ref:fib}) ze wstępu.
 Obliczenie współczynników daje: $\lambda_1 = 1 - i\sqrt{2}$, $\lambda_2 = 1 + i \sqrt{2}$. Zauważmy, że co do modułów wartości własne są równe. 
 Okazuje się, że ten przypadek jest szczególnie interesujący i wymaga trochę więcej uwagi. 
 
-Nasz liniowy ciąg rekurencyjny można zapisać w postaci\marg{Zainteresowany Czytelnik może przeczytać o liczbach zespolonych: \href{http://www.deltami.edu.pl/temat/matematyka/algebra/2016/09/30/Liczby_zespolone_i_kwaterniony/}{Delta, październik 2016:
+Nasz liniowy ciąg rekurencyjny można zapisać w postaci:\marg{Zainteresowany Czytelnik może przeczytać o liczbach zespolonych: \href{http://www.deltami.edu.pl/temat/matematyka/algebra/2016/09/30/Liczby_zespolone_i_kwaterniony/}{Delta, październik 2016:
 Liczby zespolone i kwaterniony}}
 \begin{equation*}
     u_{n} = \frac{i}{2 \sqrt{2}}(\lambda_{1}^{n}- \lambda_2^{n})
@@ -137,16 +137,16 @@ Mianowicie można nietrudno pokazać, że nasze liniowy ciąg rekurencyjny będz
     Powiemy, że $a $ jest liczbą algebraiczną, jeżeli jest pierwiastkiem niezerowego wielomianu o współczynnikach wymiernych. Zbiór liczb algebraicznych oznaczmy jako $\mathbb{A}$. Liczba $\sqrt{2}$ jest liczbą algebraiczną wielomianu $p(x) = x^{2} - 2$
 } liczb zespolonych takich, że $\lambda_1 = \overline{\lambda_2}$.
 
-Pytając się o warunek $u_n = 0$, możemy zauważyć, że $a \lambda_1^{n} + \overline{a} \overline{\lambda_1}^{n} = 0 $ wtedy i tylko wtedy, gdy cześć rzeczywista $a {\lambda_1^{n}}$ jest równa $0$. 
-Weźmy: $v = \frac{\lambda_1}{|\lambda_1|} $ wówczas $|v| = 1$.
-Wystarczy sprawdzić, czy $\frac{u_n}{|\lambda_1|^n} = 0$, czyli, czy $a v^{n} + \overline{a} \overline{v} ^{n} = 0$.
+Pytając się o warunek $u_n = 0$, możemy zauważyć, że $a \lambda_1^{n} + \overline{a} \overline{\lambda_1}^{n} = 0 $ wtedy i tylko wtedy, gdy część rzeczywista $a {\lambda_1^{n}}$ jest równa $0$. 
+Przykładowo, jeśli weźmiemy: $v = \frac{\lambda_1}{|\lambda_1|} $ wówczas $|v| = 1$.
+Wystarczy sprawdzić, czy $\frac{u_n}{|\lambda_1|^n} = 0$, czyli czy $a v^{n} + \overline{a} \overline{v} ^{n} = 0$.
 To zaś jest równoważne temu, że $a v^{n}$ jest czysto urojone (postaci $ix$ dla $x \in \mathbb{R}$). Ponieważ $|v| = 1$, to musi być $x = |a|$. Pytamy więc, czy istnieje takie $n$, że $v^{n} = \frac{i |a|}{a}$.
 
-Pozostaje nam rozwiązać równanie postaci
+Pozostaje nam rozwiązać równanie postaci:
 \begin{equation*}
     v^{n} = \beta, \text{ gdzie } v, \beta \in \A, |v| = |\beta| = 1.
 \end{equation*}
-To w ogólności wymaga pochylenia się nad teorią liczb algebraicznych. Jednak dla sprawnego algebraika, takie równania nie stanowią problemu. Dla ciągów rekurencyjnych rzędu $3$ również znamy algorytm bazujący na podobnym rozumowaniach, jednak w ogólności dla $k>5$ nie jest znane żadne rozwiązanie problemu Skolema. 
+To w ogólności wymaga pochylenia się nad teorią liczb algebraicznych. Jednak dla sprawnego algebraika takie równania nie stanowią problemu. Dla ciągów rekurencyjnych rzędu $3$ również znamy algorytm bazujący na podobnym rozumowaniach, jednak w ogólności dla $k>5$ nie jest znane żadne rozwiązanie problemu Skolema. 
 
 
 
