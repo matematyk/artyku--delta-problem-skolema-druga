@@ -23,7 +23,7 @@
 
 \marg{Student, Wydział Matematyki, Informatyki i Mechaniki, Uniwersytet Warszawski}
 
-Wiele matematycznych problemów ma bardzo proste sformułowanie, ale ich istota dotyka głębokiej matematyki. Przykładem takiego problemu jest tytułowy problem Skolema. Sformułowanie wydaje się bliskie informatyce teoretycznej zainteresowany Czytelnik znający tzw. problem stopu, może zauważyć tutaj analogię. Techniki służące do rozwiązania problemu podchodzą jednak nie z informatyki teoretycznej, a z algebry. Pewne rozwiązanie przy pomocy technik wymagałoby istotnych postępów w tej dziedzinie.
+Wiele matematycznych problemów ma bardzo proste sformułowanie, ale ich istota dotyka głębokiej matematyki. Przykładem takiego problemu jest tytułowy problem Skolema. Sformułowanie wydaje się bliskie informatyce teoretycznej, a zainteresowany Czytelnik znający tzw. problem stopu może zauważyć tutaj analogię. Techniki służące do rozwiązania problemu pochodzą jednak nie z informatyki teoretycznej, a z algebry. Pełne rozwiązanie problemu przy pomocy tych technik wymagałoby istotnych postępów w tej dziedzinie algebry.
 
 Zacznijmy od rozważenia takiego oto pytania: czy dany liniowy ciąg rekurencyjny (np. ciąg Fibonacciego (\ref{fib})) ma pewien wyraz równy zero? \marg{
 Kolejne wyrazy ciągu Fibonacciego: $0, 1, 1, 2, 3, 5, 8, 13, \ldots$
@@ -46,7 +46,7 @@ Rozważmy na przykład następujący ciąg: \marg{Kolejne wyrazy dla tego ciągu
     \end{cases}
 \end{equation}
 
-Na pierwszy rzut oka problem nie jest łatwy do rozstrzygnięcia. Wypisując kolejne wyrazy, możemy wysnuć hipotezę, że owy ciąg również poza pierwszym nie ma wyrazu zerowego. Problem można sformułować w ogólności dla większej ilości równań. W tym artykule postaram się pokazać, że za rozwiązaniem nawet dla prostych równań za rozwiązaniem stoi ciekawa matematyka. 
+Na pierwszy rzut oka problem nie jest łatwy do rozstrzygnięcia. Wypisując kolejne wyrazy, możemy wysnuć hipotezę, że owy ciąg również poza pierwszym nie ma wyrazu zerowego. Problem można sformułować w ogólności dla większej ilości równań. W tym artykule postaram się pokazać, że za rozwiązaniem nawet dla prostych ciągów stoi ciekawa matematyka. 
     
 
 \vfill
@@ -55,7 +55,7 @@ Na pierwszy rzut oka problem nie jest łatwy do rozstrzygnięcia. Wypisując kol
 \marg{Liniowa rekurencja jest fundamentem wielu pojęć w informatyce czy kombinatoryce. 
 }
 
-Wprowadźmy potrzebne definicje. Liniowy ciąg rekurencyjny to ciąg liczb całkowitych $u_0, \ldots, u_{k-1} \in \mathbb{Z}$, taki, że dla pewnych $a_0 \neq$ 0 $a_0, \ldots, a_{k-1} \in \mathbb{Z}$ oraz dla każdego $n \in \mathbb{N}$, $n \geq k$ mamy $u_{n}=a_{0} u_{n-1}+a_{1} u_{n-2}+\ldots+a_{k-1} u_{n-k}$. Rząd takiego ciągu to $k$.
+Wprowadźmy potrzebne definicje. Liniowy ciąg rekurencyjny to ciąg liczb całkowitych $u_0, u_1 \ldots \in \mathbb{Z}$, taki, że dla pewnych $a_0, \ldots, a_{k-1} \in \mathbb{Z}$, gdzie $a_0 \neq 0$ oraz dla każdego $n \geq k$ mamy $u_{n}=a_{0} u_{n-1}+a_{1} u_{n-2}+\ldots+a_{k-1} u_{n-k}$. Rząd takiego ciągu to $k$.
 
 \textbf{Problem Skolema}, to pytanie, czy dla danego liniowego ciągu rekurencyjego, istnieje takie $n$, że $u_n = 0$?
 \marg{
@@ -64,7 +64,7 @@ Albert Thoralf Skolem (ur. 23 maja 1887 w Sandsvaer, zm. 23 marca 1963)
 
 Obecnie wiadomo, że problem Skolema jest rozstrzygalny dla ciągów rzędu $2$, $3$ i $4$, natomiast rozstrzygalność dla rzędu $5$ pozostaje nadal otwarta. Znamy jednak rozstrzygalność różnych podprzypadków nawet dla rzędu $5$. 
 
-Okazuje się, że już dla równań rzędu $2$ rozwiązanie nie jest trywialne. W artykule postaram się przedstawić intuicje stojące za ową nietrywialnością. Bardzo przydatna będzie, znany zapewne niektórym Czytelnikom, własność ciągów rekurencyjnych.
+Okazuje się, że już dla ciągów rzędu $2$ rozwiązanie nie jest trywialne. W artykule postaram się przedstawić intuicje stojące za ową nietrywialnością. Bardzo przydatne będzie, znane zapewne niektórym Czytelnikom, następujące twierdzenie dotyczące ciągów rekurencyjnych.
 
 \textbf{Twierdzenie:}
 Dla każdego liniowego ciągu rekurencyjnego $u_n$ rzędu $k$ można obliczyć
@@ -81,7 +81,7 @@ oraz
 gdzie przez $\deg(p)$ oznaczamy stopień wielomianu $p$.
 
 
-Dla zainteresowanego Czytelnika znającego podstawowe narzędzia z algebry liniowej to twierdzenie nie jest to trudne do udowodnienia. 
+Dla zainteresowanego Czytelnika znającego podstawowe narzędzia z algebry liniowej to twierdzenie nie jest trudne do udowodnienia. 
 
 
 \vfill
