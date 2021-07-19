@@ -23,11 +23,11 @@
 
 \marg{Student, Wydział Matematyki, Informatyki i Mechaniki, Uniwersytet Warszawski}
 
-Wiele matematycznych problemów ma bardzo proste sformułowanie, ale ich istota dotyka głębokiej matematyki. Przykładem takiego problemu jest tytułowy problem Skolema. Sformułowanie wydaje się bliskie informatyce teoretycznej, a zainteresowany Czytelnik znający tzw. problem stopu może zauważyć tutaj analogię. Techniki służące do rozwiązania problemu pochodzą jednak nie z informatyki teoretycznej, a z algebry. Pełne rozwiązanie problemu przy pomocy tych technik wymagałoby istotnych postępów w tej dziedzinie algebry.
+Wiele matematycznych problemów ma bardzo proste sformułowanie, ale ich istota dotyka głębokiej matematyki. Przykładem takiego problemu jest tytułowy problem Skolema. Sformułowanie wydaje się bliskie informatyce teoretycznej, zainteresowany Czytelnik znający tzw. problem stopu może zauważyć tutaj analogię. Techniki służące do rozwiązania problemu pochodzą jednak nie z informatyki teoretycznej, a z algebry. Pełne rozwiązanie problemu przy pomocy tych technik wymagałoby istotnych postępów w tej dziedzinie algebry.
 
 Zacznijmy od rozważenia takiego oto pytania: czy dany liniowy ciąg rekurencyjny (np. ciąg Fibonacciego (\ref{fib})) ma pewien wyraz równy zero? \marg{
 Kolejne wyrazy ciągu Fibonacciego: $0, 1, 1, 2, 3, 5, 8, 13, \ldots$
-} Każdy bez trudu odpowie na to pytanie dla ciągu Fibonacciego, ponieważ tylko dla $n=0$ wyraz $F_0 = 0$ jest równy zero. 
+} Każdy bez trudu odpowie na to pytanie dla ciągu Fibonacciego,  tylko dla $n=0$ wyraz $F_0 = 0$ jest równy zero. 
 \begin{equation}\label{fib}
     \begin{cases}
         F_{n} = F_{n-1} + F_{n-2} \\
@@ -46,7 +46,7 @@ Rozważmy na przykład następujący ciąg: \marg{Kolejne wyrazy dla tego ciągu
     \end{cases}
 \end{equation}
 
-Na pierwszy rzut oka problem nie jest łatwy do rozstrzygnięcia. Wypisując kolejne wyrazy, możemy wysnuć hipotezę, że owy ciąg również poza pierwszym nie ma wyrazu zerowego. Problem można sformułować w ogólności dla większej ilości równań. W tym artykule postaram się pokazać, że za rozwiązaniem nawet dla prostych ciągów stoi ciekawa matematyka. 
+Na pierwszy rzut oka problem nie jest łatwy do rozstrzygnięcia. Wypisując kolejne wyrazy, możemy wysnuć hipotezę, że owy ciąg również poza pierwszym nie ma wyrazu zerowego. Problem można sformułować w ogólności dla większej ilości równań. Artykuł ten pokaże, że nawet dla prostych ciągów za rozwiązaniem stoi ciekawa matematyka. 
     
 
 \vfill
@@ -55,7 +55,7 @@ Na pierwszy rzut oka problem nie jest łatwy do rozstrzygnięcia. Wypisując kol
 \marg{Liniowa rekurencja jest fundamentem wielu pojęć w informatyce czy kombinatoryce. 
 }
 
-Wprowadźmy potrzebne definicje. Liniowy ciąg rekurencyjny to ciąg liczb całkowitych $u_0, u_1 \ldots \in \mathbb{Z}$, taki, że dla pewnych $a_0, \ldots, a_{k-1} \in \mathbb{Z}$, gdzie $a_0 \neq 0$ oraz dla każdego $n \geq k$ mamy $u_{n}=a_{0} u_{n-1}+a_{1} u_{n-2}+\ldots+a_{k-1} u_{n-k}$. Rząd takiego ciągu to $k$.
+Aby zrozumieć lepiej ten problem, należy najpierw wprowadzić potrzebne definicje. Liniowy ciąg rekurencyjny to ciąg liczb całkowitych $u_0, u_1 \ldots \in \mathbb{Z}$, taki, że dla pewnych $a_0, \ldots, a_{k-1} \in \mathbb{Z}$, gdzie $a_0 \neq 0$ oraz dla każdego $n \geq k$ mamy $u_{n}=a_{0} u_{n-1}+a_{1} u_{n-2}+\ldots+a_{k-1} u_{n-k}$. Rząd takiego ciągu to $k$.
 
 \textbf{Problem Skolema}, to pytanie, czy dla danego liniowego ciągu rekurencyjego, istnieje takie $n$, że $u_n = 0$?
 \marg{
@@ -85,40 +85,29 @@ Dla zainteresowanego Czytelnika znającego podstawowe narzędzia z algebry linio
 
 
 \vfill
-\mtyt{Równania rekurencyjne rzędu 2}
+\mtyt{Ciągi rekurencyjne rzędu 2}
 
 
 W dalszej części przedstawię techniki związane z rozwiązaniem problemu Skolema dla liniowego ciągu rekurencyjnego rzędu 2. Rozwiązanie będzie zależało od współczynników, które występują w twierdzeniu powyżej. Prześledzimy je na kilku przykładach, które zilustrują techniki rozwiązywania naszego problemu w różnych przypadkach.
 
-\textbf{Różne moduły $\lambda_1$ i $\lambda_2$}\\
-Rozważmy jeszcze raz ciąg Fibonacciego. Na początek zobaczmy, jak uzyskać wzór jawny na $n$-ty wyraz ciągu. Stosując twierdzenie, wiemy, że $n$-ty wyraz ciągu Fibonacciego to:
+\textbf{Różne moduły współczynników $\lambda_1$ i $\lambda_2$}\\
+Rozważmy jeszcze raz ciąg Fibonacciego. Stosując wspomniane powyżej twierdzenie możemy stosunkowo łatwo obliczyć, że $n$-ty wyraz ciągu Fibonacciego to:
 \begin{equation*}
     F_{n} = \frac{\lambda_1 \lambda_2^{n+1}-\lambda_2 \lambda_1^{n+1}}{\sqrt{5}} = \frac{\lambda_1^{n+1}\lambda_2\left(\left(\frac{\lambda_2}{\lambda1}\right)^{n}-1\right)}{\sqrt{5}}
 \end{equation*}
-Warto zaznaczyć, że jawne obliczenie $\lambda_1$ i $\lambda_2$ to prześledzenie rozumowania dowodu twierdzenia i wykorzystania reprezentacji liniowego ciągu rekurencyjnego oraz sprawdzenie wartości własnych pewnej macierzy.  
+Warto zaznaczyć, że jawne obliczenie $\lambda_1$ i $\lambda_2$ to prześledzenie rozumowania dowodu twierdzenia i wykorzystanie reprezentacji liniowego ciągu rekurencyjnego oraz sprawdzenie wartości własnych pewnej macierzy.  
  
 
 Możemy teraz ponownie (lecz inaczej) wykazać, że ciąg Fibonacciego nie ma wyrazów zerowych poza $F_0$. Wystarczy zaobserwować, że $F_n = 0$ wtedy i tylko wtedy, gdy $(\frac{\lambda_2}{\lambda_1})^{n}=1$. Można łatwo zauważyć, że nie jest to możliwe dla $n > 0$, ponieważ $|\lambda_1| > |\lambda_2|$.
 Przy pomocy podobnych technik można pokazać, że dla dowolnego ciągu, którego macierz ma dwie wartości własne o różnych modułach, od pewnego momentu wyrazy nie mogę być równe zero. Wówczas do sprawdzenia, czy istnieje jakikolwiek wyraz zerowy, wystarczy jedynie sprawdzić zerowanie się pewnej liczby początkowych wyrazów ciągu.
 
 \textbf{Równe współczynniki $\lambda_1$, $\lambda_2$}\\
-Rozważmy kolejny przykład ciągu:
-\begin{equation}\label{przyk:3}
-    \begin{cases}
-        u_n = -2 u_{n-1} - u_{n-2} \\
-        u_1 = 0 \\
-        u_0 = 1
-    \end{cases}
-\end{equation}
-Kolejne wyrazy tego ciągu to: $1, 0, -1, 2, -3, 4, -5, 6, -7, 8 \ldots$, więc również spodziewamy się, że tylko $u_1 = 0$.
-
-Podobnie jak poprzednio, opierając się o twierdzenie możemy jawnie wyrazić wyraz $u_{n}$ jako:
+Rozważmy kolejny przypadek dla ciągu $u_n$, w którym współczynniki uzyskane z twierdzenia są równe. Podobnie jak poprzednio, możemy jawnie wyrazić wyraz $u_{n}$ jako:
 \begin{equation*}
-    u_n = \lambda_{1}^n + \lambda_{1}^{n-1} n
+    u_n = a \lambda_1^n + b n \lambda_1^n, 
 \end{equation*}
-Wykazanie, czy istnieje $n$ takie, że $u_n=0$ staje się proste. A zatem $u_n = 0$, jeśli $\lambda_1 + n = 0$, czyli gdy $n = -\lambda_1 = 1$.
+Wykazanie, czy istnieje $n$ takie, że $u_n=0$ staje się proste. A zatem $u_n = 0$, jeśli $(an+b) \lambda_1^n = 0$, co po przekształceniu daje $n = -\frac{a}{b}$.
 
-Nietrudno pokazać, że z kolei tą metodą można rozwiązać dowolny przypadek, gdy mamy dwukrotną wartość własną.
 
 \textbf{Ostatni przypadek}\\
 Przed nami najciekawsza część, przypadek gdy $|\lambda_1| = |\lambda_2|$, ale $\lambda_1 \neq \lambda_2$.
@@ -146,8 +135,9 @@ Pozostaje nam rozwiązać równanie postaci:
 \begin{equation*}
     v^{n} = \beta, \text{ gdzie } v, \beta \in \A, |v| = |\beta| = 1.
 \end{equation*}
-To w ogólności wymaga pochylenia się nad teorią liczb algebraicznych. Jednak dla sprawnego algebraika takie równania nie stanowią problemu. Dla ciągów rekurencyjnych rzędu $3$ również znamy algorytm bazujący na podobnym rozumowaniach, jednak w ogólności dla $k>5$ nie jest znane żadne rozwiązanie problemu Skolema. 
+To w ogólności wymaga pochylenia się nad teorią liczb algebraicznych. Jednak dla sprawnego algebraika takie równania nie stanowią problemu. 
 
+Dla ciągów rekurencyjnych rzędu $k=3$ również znamy algorytm bazujący na podobnych rozumowaniach, jednak w ogólności dla $k>5$ nie jest znane żadne rozwiązanie problemu Skolema. Dla rzędu $k=2$ ostatnie rozumowanie opiera się na znajomości algebraicznej teorii liczb. Sam dowód wcześniejszego twierdzenia wykorzystuje podstawy algebry liniowej, a sformułowanie problemu jest bliskie problemowi stopu, co ciekawie pokazuje, że ten problem staje się interdyscyplinarny i wymaga znajomości kilku dziedzin zarówno matematyki, jak i informatyki. 
 
 
 \end{document}
