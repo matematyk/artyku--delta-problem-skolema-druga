@@ -46,7 +46,7 @@ Rozważmy na przykład następujący ciąg: \marg{Kolejne wyrazy dla tego ciągu
     \end{cases}
 \end{equation}
 
-Na pierwszy rzut oka problem nie jest łatwy do rozstrzygnięcia. Wypisując kolejne wyrazy, możemy wysnuć hipotezę, że owy ciąg również poza pierwszym nie ma wyrazu zerowego. Problem można sformułować w ogólności dla większej ilości równań. Artykuł ten pokaże, że nawet dla prostych ciągów za rozwiązaniem stoi ciekawa matematyka. 
+Na pierwszy rzut oka problem nie jest łatwy do rozstrzygnięcia. Wypisując kolejne wyrazy, możemy wysnuć hipotezę, że owy ciąg również poza pierwszym nie ma wyrazu równego zero. Problem można sformułować w ogólności dla większej liczby równań. Artykuł ten pokaże, że nawet dla prostych ciągów za rozwiązaniem stoi ciekawa matematyka. 
     
 
 \vfill
@@ -57,7 +57,7 @@ Na pierwszy rzut oka problem nie jest łatwy do rozstrzygnięcia. Wypisując kol
 
 Aby zrozumieć lepiej ten problem, należy najpierw wprowadzić potrzebne definicje. Liniowy ciąg rekurencyjny to ciąg liczb całkowitych $u_0, u_1 \ldots \in \mathbb{Z}$, taki, że dla pewnych $a_0, \ldots, a_{k-1} \in \mathbb{Z}$, gdzie $a_0 \neq 0$ oraz dla każdego $n \geq k$ mamy $u_{n}=a_{0} u_{n-1}+a_{1} u_{n-2}+\ldots+a_{k-1} u_{n-k}$. Rząd takiego ciągu to $k$.
 
-\textbf{Problem Skolema}, to pytanie, czy dla danego liniowego ciągu rekurencyjego, istnieje takie $n$, że $u_n = 0$?
+\textbf{Problem Skolema} to pytanie, czy dla danego liniowego ciągu rekurencyjego istnieje takie $n$, że $u_n = 0$?
 \marg{
 Albert Thoralf Skolem (ur. 23 maja 1887 w Sandsvaer, zm. 23 marca 1963)
 }
@@ -68,15 +68,17 @@ Okazuje się, że już dla ciągów rzędu $2$ rozwiązanie nie jest trywialne. 
 
 \textbf{Twierdzenie:}
 Dla każdego liniowego ciągu rekurencyjnego $u_n$ rzędu $k$ można obliczyć
-liczby zespolone $\lambda_1, \ldots, \lambda_j$
-oraz wielomiany $p_1, \ldots, p_j$
-takie, że:
+niezerowe liczby zespolone $\lambda_1, \ldots, \lambda_j$
+oraz wielomiany $p_1, \ldots, p_j$ o współczynnikach algebraicznych
+\marg{
+    Powiemy, że liczba zespolona $a$ jest liczbą algebraiczną, jeżeli jest pierwiastkiem niezerowego wielomianu o współczynnikach wymiernych. Zbiór liczb algebraicznych oznaczmy jako $\mathbb{A}$. Liczba $\sqrt{2}$ jest pierwiastkiem wielomianu $p(x) = x^{2} - 2$, a liczba $i$ jest pierwiastkiem wielomianu $p(x) = x^2 + 1$.
+} takie, że:
 \[
 u_n = p_1(n) \lambda_1^n + p_2(n) \lambda_2^n + … + p_j(n) \lambda_j^n,
 \]
 oraz
 \[
-\deg(p_1) + \ldots + \deg(p_j) \leq k,
+\deg(p_1) + \ldots + \deg(p_j) \leq k-j,
 \]
 gdzie przez $\deg(p)$ oznaczamy stopień wielomianu $p$.
 
@@ -88,9 +90,29 @@ Dla zainteresowanego Czytelnika znającego podstawowe narzędzia z algebry linio
 \mtyt{Ciągi rekurencyjne rzędu 2}
 
 
-W dalszej części przedstawię techniki związane z rozwiązaniem problemu Skolema dla liniowego ciągu rekurencyjnego rzędu 2. Rozwiązanie będzie zależało od współczynników, które występują w twierdzeniu powyżej. Prześledzimy je na kilku przykładach, które zilustrują techniki rozwiązywania naszego problemu w różnych przypadkach.
+W dalszej części przedstawię techniki związane z rozwiązaniem problemu Skolema dla liniowego ciągu rekurencyjnego rzędu 2. Rozwiązanie będzie zależało od współczynników, które występują w twierdzeniu powyżej.
+%Prześledzimy je na kilku przykładach, które zilustrują techniki rozwiązywania naszego problemu w różnych przypadkach.
+Z powyższego twierdzenia otrzymujemy, że $j \leq 2$, gdyż suma stopni wielomianów $p_i$ musi być nieujemna. Rozważymy kilka przypadków w zależności od wartości $j$ oraz liczb $\lambda_i$.
 
-\textbf{Różne moduły współczynników $\lambda_1$ i $\lambda_2$}\\
+
+\textbf{Wartość $j=1$}\\
+Z twierdzenia wynika, że
+\[
+u_n = (an+b) \lambda_1^n.
+\]
+Przypomnijmy, że $\lambda_1 \neq 0$.
+A zatem jeśli $u_n = 0$, to $(an+b) = 0$, co po przekształceniu daje $n = -\frac{a}{b}$ i kończy rozumowanie w tym przypadku.
+
+A pozostałych przypadkach mamy $j > 1$, a zatem $j = 2$. Wówczas
+\[
+u_n = p_1(n) \lambda_1^n + p_2(n) \lambda_2^n,
+\]
+gdzie $\deg(p_1) + \deg(p_2) = 0$. A więc wielomiany $p_1$ oraz $p_2$ są stałe, czyli ciąg $u_n$ ma postać
+\[
+u_n = c_1 \lambda_1^n + c_2 \lambda_2^n.
+\]
+
+\textbf{Wartość $j=2$ oraz $|\lambda_1| \neq |\lambda_2|$}\\
 Rozważmy jeszcze raz ciąg Fibonacciego. Stosując wspomniane powyżej twierdzenie możemy stosunkowo łatwo obliczyć, że $n$-ty wyraz ciągu Fibonacciego to:
 \begin{equation*}
     F_{n} = \frac{\lambda_1 \lambda_2^{n+1}-\lambda_2 \lambda_1^{n+1}}{\sqrt{5}} = \frac{\lambda_1^{n+1}\lambda_2\left(\left(\frac{\lambda_2}{\lambda1}\right)^{n}-1\right)}{\sqrt{5}}
@@ -99,45 +121,39 @@ Warto zaznaczyć, że jawne obliczenie $\lambda_1$ i $\lambda_2$ to prześledzen
  
 
 Możemy teraz ponownie (lecz inaczej) wykazać, że ciąg Fibonacciego nie ma wyrazów zerowych poza $F_0$. Wystarczy zaobserwować, że $F_n = 0$ wtedy i tylko wtedy, gdy $(\frac{\lambda_2}{\lambda_1})^{n}=1$. Można łatwo zauważyć, że nie jest to możliwe dla $n > 0$, ponieważ $|\lambda_1| > |\lambda_2|$.
-Przy pomocy podobnych technik można pokazać, że dla dowolnego ciągu, którego macierz ma dwie wartości własne o różnych modułach, od pewnego momentu wyrazy nie mogę być równe zero. Wówczas do sprawdzenia, czy istnieje jakikolwiek wyraz zerowy, wystarczy jedynie sprawdzić zerowanie się pewnej liczby początkowych wyrazów ciągu.
-
-\textbf{Równe współczynniki $\lambda_1$, $\lambda_2$}\\
-Rozważmy kolejny przypadek dla ciągu $u_n$, w którym współczynniki uzyskane z twierdzenia są równe. Podobnie jak poprzednio, możemy jawnie wyrazić wyraz $u_{n}$ jako:
-\begin{equation*}
-    u_n = a \lambda_1^n + b n \lambda_1^n, 
-\end{equation*}
-Wykazanie, czy istnieje $n$ takie, że $u_n=0$ staje się proste. A zatem $u_n = 0$, jeśli $(an+b) \lambda_1^n = 0$, co po przekształceniu daje $n = -\frac{a}{b}$.
+%Przy pomocy podobnych technik można pokazać, że dla dowolnego ciągu, którego macierz ma dwie wartości własne o różnych modułach, od pewnego momentu wyrazy nie mogę być równe zero. Wówczas do sprawdzenia, czy istnieje jakikolwiek wyraz zerowy, wystarczy jedynie sprawdzić zerowanie się pewnej liczby początkowych wyrazów ciągu.
 
 
-\textbf{Ostatni przypadek}\\
+
+
+\textbf{Wartość $j=2$ oraz $|\lambda_1| = |\lambda_2|$}\\
 Przed nami najciekawsza część, przypadek gdy $|\lambda_1| = |\lambda_2|$, ale $\lambda_1 \neq \lambda_2$.
 Rozważmy nasz przykład (\ref{ref:fib}) ze wstępu. 
-Obliczenie współczynników daje: $\lambda_1 = 1 - i\sqrt{2}$, $\lambda_2 = 1 + i \sqrt{2}$. Zauważmy, że co do modułów wartości własne są równe. 
-Okazuje się, że ten przypadek jest szczególnie interesujący i wymaga trochę więcej uwagi. 
+Można nietrudno obliczyć, że: $c_1 = \frac{i}{2\sqrt{2}}$, $c_2 = \frac{-i}{2\sqrt{2}}$, $\lambda_1 = 1 - i\sqrt{2}$ oraz $\lambda_2 = 1 + i \sqrt{2}$.
 
-Nasz liniowy ciąg rekurencyjny można zapisać w postaci:\marg{Zainteresowany Czytelnik może przeczytać o liczbach zespolonych: \href{http://www.deltami.edu.pl/temat/matematyka/algebra/2016/09/30/Liczby_zespolone_i_kwaterniony/}{Delta, październik 2016:
+A zatem nasz liniowy ciąg rekurencyjny ma postać:\marg{Zainteresowany Czytelnik może przeczytać o liczbach zespolonych: \href{http://www.deltami.edu.pl/temat/matematyka/algebra/2016/09/30/Liczby_zespolone_i_kwaterniony/}{Delta, październik 2016:
 Liczby zespolone i kwaterniony}}
 \begin{equation*}
     u_{n} = \frac{i}{2 \sqrt{2}}(\lambda_{1}^{n}- \lambda_2^{n})
 \end{equation*}
-Przeniesiemy teraz nasze rozważania na grunt uogólniony. 
+Przeniesiemy teraz nasze rozważania na grunt uogólniony. Mianowicie można nietrudno pokazać, że w naszym przypadku $\lambda_1 = \overline{\lambda_2}$ oraz $c_1 = \overline{c_2}$. Zatem
+nasz ciąg będzie przyjmował postać $u_n = c \lambda^{n} + \overline{c} \overline{\lambda}^{n}$, dla pewnej liczby algebraicznej $c \in \mathbb{A}$ i liczby zespolonej $\lambda$.
 
-Mianowicie można nietrudno pokazać, że nasze liniowy ciąg rekurencyjny będzie przyjmował postać $u_n = a \lambda_1^{n} + \overline{a} \lambda_2^{n}$, dla pewnej liczby algebraicznej $a \in \mathbb{A}$ i \marg{
-    Powiemy, że $a $ jest liczbą algebraiczną, jeżeli jest pierwiastkiem niezerowego wielomianu o współczynnikach wymiernych. Zbiór liczb algebraicznych oznaczmy jako $\mathbb{A}$. Liczba $\sqrt{2}$ jest liczbą algebraiczną wielomianu $p(x) = x^{2} - 2$
-} liczb zespolonych takich, że $\lambda_1 = \overline{\lambda_2}$.
-
-Pytając się o warunek $u_n = 0$, możemy zauważyć, że $a \lambda_1^{n} + \overline{a} \overline{\lambda_1}^{n} = 0 $ wtedy i tylko wtedy, gdy część rzeczywista $a {\lambda_1^{n}}$ jest równa $0$. 
-Przykładowo, jeśli weźmiemy: $v = \frac{\lambda_1}{|\lambda_1|} $ wówczas $|v| = 1$.
-Wystarczy sprawdzić, czy $\frac{u_n}{|\lambda_1|^n} = 0$, czyli czy $a v^{n} + \overline{a} \overline{v} ^{n} = 0$.
-To zaś jest równoważne temu, że $a v^{n}$ jest czysto urojone (postaci $ix$ dla $x \in \mathbb{R}$). Ponieważ $|v| = 1$, to musi być $x = |a|$. Pytamy więc, czy istnieje takie $n$, że $v^{n} = \frac{i |a|}{a}$.
+Pytając się o warunek $u_n = 0$, możemy zauważyć, że $c \lambda^{n} + \overline{c} \overline{\lambda}^{n} = 0 $ wtedy i tylko wtedy, gdy część rzeczywista $c {\lambda^{n}}$ jest równa $0$. Niech $v = \frac{\lambda}{|\lambda|}$ wówczas $|v| = 1$.
+Zamiast badać, czy $u_n = 0$ będziemy teraz badać, czy $\frac{u_n}{\lambda^n} = 0$, co jak łatwo zauważyć jest równoważnym pytaniem.
+Zauważmy, że
+$\frac{u_n}{\lambda^n} = c v^n + \overline{c} \overline{v}^n$.
+Wystarczy sprawdzić, czy $c v^{n} + \overline{c} \overline{v} ^{n} = 0$.
+To zaś jest równoważne temu, że $c v^{n}$ jest czysto urojone (postaci $ix$ dla $x \in \mathbb{R}$). Ponieważ $|v| = 1$, to musi być $x = |c|$. Pytamy więc, czy istnieje takie $n$, że $c v^{n} = i |c|$, czyli $v^n = \frac{i |c|}{c}$.
 
 Pozostaje nam rozwiązać równanie postaci:
 \begin{equation*}
-    v^{n} = \beta, \text{ gdzie } v, \beta \in \A, |v| = |\beta| = 1.
+    v^{n} = \beta, \text{ gdzie } v, \beta \in \A, |v| = 1 \text{ oraz } \beta = \frac{|c|}{|c|}= 1.
 \end{equation*}
-To w ogólności wymaga pochylenia się nad teorią liczb algebraicznych. Jednak dla sprawnego algebraika takie równania nie stanowią problemu. 
+To w ogólności wymaga pochylenia się nad teorią liczb algebraicznych.
+Mimo, że to pytanie wydaje się proste, to jego rozwiązanie wymaga wprowadzenia pomysłowych norm mierzących wielkość liczb (innych niż wartość bezwzględna danej liczby) i opierających się na ideałach pierwszych w ciele liczb algebraicznych. Jest to bardzo ciekawa technika, ale opowiedzenie o niej zajęłoby przynajmniej kilka stron w Delcie. Zainteresowanych Czyteników odsyłamy do ... (TODO)
 
-Dla ciągów rekurencyjnych rzędu $k=3$ również znamy algorytm bazujący na podobnych rozumowaniach, jednak w ogólności dla $k>5$ nie jest znane żadne rozwiązanie problemu Skolema. Dla rzędu $k=2$ ostatnie rozumowanie opiera się na znajomości algebraicznej teorii liczb. Sam dowód wcześniejszego twierdzenia wykorzystuje podstawy algebry liniowej, a sformułowanie problemu jest bliskie problemowi stopu, co ciekawie pokazuje, że ten problem staje się interdyscyplinarny i wymaga znajomości kilku dziedzin zarówno matematyki, jak i informatyki. 
+Dla ciągów rekurencyjnych rzędu $k=3$ również znamy algorytm bazujący na podobnych rozumowaniach, jednak w ogólności dla $k>5$ nie jest znane żadne rozwiązanie problemu Skolema. Nawet dla rzędu $k=2$ ostatni przypadek opiera się na algebraicznej teorii liczb. Sam dowód wcześniejszego twierdzenia wykorzystuje podstawy algebry liniowej, a sformułowanie problemu jest bliskie problemowi stopu, co ciekawie pokazuje, że ten problem staje się interdyscyplinarny i wymaga znajomości kilku dziedzin zarówno z matematyki, jak i z informatyki. 
 
 
 \end{document}
