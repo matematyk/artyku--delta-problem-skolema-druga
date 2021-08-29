@@ -103,7 +103,8 @@ u_n = (an+b) \lambda_1^n.
 Przypomnijmy, że $\lambda_1 \neq 0$.
 A zatem jeśli $u_n = 0$, to $(an+b) = 0$, co po przekształceniu daje $n = -\frac{a}{b}$ i kończy rozumowanie w tym przypadku.
 
-A pozostałych przypadkach mamy $j > 1$, a zatem $j = 2$. Wówczas
+\textit{Uwaga.}
+W pozostałych przypadkach mamy $j > 1$, a zatem $j = 2$. Wówczas
 \[
 u_n = p_1(n) \lambda_1^n + p_2(n) \lambda_2^n,
 \]
@@ -113,14 +114,26 @@ u_n = c_1 \lambda_1^n + c_2 \lambda_2^n.
 \]
 
 \textbf{Wartość $j=2$ oraz $|\lambda_1| \neq |\lambda_2|$}\\
-Rozważmy jeszcze raz ciąg Fibonacciego. Stosując wspomniane powyżej twierdzenie możemy stosunkowo łatwo obliczyć, że $n$-ty wyraz ciągu Fibonacciego to:
-\begin{equation*}
-    F_{n} = \frac{\lambda_1 \lambda_2^{n+1}-\lambda_2 \lambda_1^{n+1}}{\sqrt{5}} = \frac{\lambda_1^{n+1}\lambda_2\left(\left(\frac{\lambda_2}{\lambda1}\right)^{n}-1\right)}{\sqrt{5}}
-\end{equation*}
-Warto zaznaczyć, że jawne obliczenie $\lambda_1$ i $\lambda_2$ to prześledzenie rozumowania dowodu twierdzenia i wykorzystanie reprezentacji liniowego ciągu rekurencyjnego oraz sprawdzenie wartości własnych pewnej macierzy.  
+Nawiązując do wcześniejszej uwagi, ciąg jest postaci:
+\[
+    u_n = c_1 \lambda_1^{n} + c_2 \lambda_{2}^n.
+\]
+Przyjmijmy, że $|\lambda_1| \neq |\lambda_2|$. A zatem jeśli $u_n = 0$ to $a_1 \lambda_1^n = - a_2 \lambda_2^n$. Co równoważnie daje:
+\[
+    \frac{-c_1}{c_2} = (\large\frac{\lambda_2}{\lambda_1})^{n}.
+\]
+Bez straty ogólności możemy założyć, że, $|\lambda_1|>|\lambda_2|$. Wówczas powyżej pewnego $n$ nie ma szans na równość. 
+
+
+
+%Rozważmy jeszcze raz ciąg Fibonacciego. Stosując wspomniane powyżej twierdzenie możemy stosunkowo łatwo obliczyć, że $n$-ty wyraz ciągu Fibonacciego to:
+%\begin{equation*}
+%    F_{n} = \frac{\lambda_1 \lambda_2^{n+1}-\lambda_2 \lambda_1^{n+1}}{\sqrt{5}} = \frac{\lambda_1^{n+1}\lambda_2\left(\left(\frac{\lambda_2}{\lambda1}\right)^{n}-1\right)}{\sqrt{5}}
+%\end{equation*}
+%Warto zaznaczyć, że jawne obliczenie $\lambda_1$ i $\lambda_2$ to prześledzenie rozumowania dowodu twierdzenia i wykorzystanie reprezentacji liniowego ciągu rekurencyjnego oraz sprawdzenie wartości własnych pewnej macierzy.  
  
 
-Możemy teraz ponownie (lecz inaczej) wykazać, że ciąg Fibonacciego nie ma wyrazów zerowych poza $F_0$. Wystarczy zaobserwować, że $F_n = 0$ wtedy i tylko wtedy, gdy $(\frac{\lambda_2}{\lambda_1})^{n}=1$. Można łatwo zauważyć, że nie jest to możliwe dla $n > 0$, ponieważ $|\lambda_1| > |\lambda_2|$.
+%Możemy teraz ponownie (lecz inaczej) wykazać, że ciąg Fibonacciego nie ma wyrazów zerowych poza $F_0$. Wystarczy zaobserwować, że $F_n = 0$ wtedy i tylko wtedy, gdy $(\frac{\lambda_2}{\lambda_1})^{n}=1$. Można łatwo zauważyć, że nie jest to możliwe dla $n > 0$, ponieważ $|\lambda_1| > |\lambda_2|$.
 %Przy pomocy podobnych technik można pokazać, że dla dowolnego ciągu, którego macierz ma dwie wartości własne o różnych modułach, od pewnego momentu wyrazy nie mogę być równe zero. Wówczas do sprawdzenia, czy istnieje jakikolwiek wyraz zerowy, wystarczy jedynie sprawdzić zerowanie się pewnej liczby początkowych wyrazów ciągu.
 
 
@@ -151,7 +164,7 @@ Pozostaje nam rozwiązać równanie postaci:
     v^{n} = \beta, \text{ gdzie } v, \beta \in \A, |v| = 1 \text{ oraz } \beta = \frac{|c|}{|c|}= 1.
 \end{equation*}
 To w ogólności wymaga pochylenia się nad teorią liczb algebraicznych.
-Mimo, że to pytanie wydaje się proste, to jego rozwiązanie wymaga wprowadzenia pomysłowych norm mierzących wielkość liczb (innych niż wartość bezwzględna danej liczby) i opierających się na ideałach pierwszych w ciele liczb algebraicznych. Jest to bardzo ciekawa technika, ale opowiedzenie o niej zajęłoby przynajmniej kilka stron w Delcie. Zainteresowanych Czyteników odsyłamy do ... (TODO)
+Mimo, że to pytanie wydaje się proste, to jego rozwiązanie wymaga wprowadzenia pomysłowych norm mierzących wielkość liczb (innych niż wartość bezwzględna danej liczby) i opierających się na ideałach pierwszych w ciele liczb algebraicznych. Jest to bardzo ciekawa technika, ale opowiedzenie o niej zajęłoby przynajmniej kilka stron w Delcie. Zainteresowanych Czytelników odsyłam do artykułu: \textit{On the Skolem Problem and Prime Powers} autorstwa Georga Kenison, Richarda J. Lipton, Joëla Ouaknine, i Jamesa Worrell.
 
 Dla ciągów rekurencyjnych rzędu $k=3$ również znamy algorytm bazujący na podobnych rozumowaniach, jednak w ogólności dla $k>5$ nie jest znane żadne rozwiązanie problemu Skolema. Nawet dla rzędu $k=2$ ostatni przypadek opiera się na algebraicznej teorii liczb. Sam dowód wcześniejszego twierdzenia wykorzystuje podstawy algebry liniowej, a sformułowanie problemu jest bliskie problemowi stopu, co ciekawie pokazuje, że ten problem staje się interdyscyplinarny i wymaga znajomości kilku dziedzin zarówno z matematyki, jak i z informatyki. 
 
