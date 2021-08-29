@@ -23,11 +23,11 @@
 
 \marg{Student, Wydział Matematyki, Informatyki i Mechaniki, Uniwersytet Warszawski}
 
-Wiele matematycznych problemów ma bardzo proste sformułowanie, ale ich istota dotyka głębokiej matematyki. Przykładem takiego problemu jest tytułowy problem Skolema. Sformułowanie wydaje się bliskie informatyce teoretycznej, zainteresowany Czytelnik znający tzw. problem stopu może zauważyć tutaj analogię. Techniki służące do rozwiązania problemu pochodzą jednak nie z informatyki teoretycznej, a z algebry. Pełne rozwiązanie problemu przy pomocy tych technik wymagałoby istotnych postępów w tej dziedzinie algebry.
+Wiele matematycznych problemów ma bardzo proste sformułowanie, ale ich istota dotyka głębokiej matematyki. Do tej grupy należy tytułowy problem Skolema. Sformułowanie wydaje się bliskie informatyce teoretycznej. Zainteresowany Czytelnik znający tzw. problem stopu może zauważyć tutaj analogię. Techniki służące do rozwiązania problemu pochodzą jednak nie z informatyki teoretycznej, a z algebry. Pełne rozwiązanie problemu przy pomocy tych technik wymagałoby istotnych postępów w tej dziedzinie algebry.
 
 Zacznijmy od rozważenia takiego oto pytania: czy dany liniowy ciąg rekurencyjny (np. ciąg Fibonacciego (\ref{fib})) ma pewien wyraz równy zero? \marg{
 Kolejne wyrazy ciągu Fibonacciego: $0, 1, 1, 2, 3, 5, 8, 13, \ldots$
-} Każdy bez trudu odpowie na to pytanie dla ciągu Fibonacciego,  tylko dla $n=0$ wyraz $F_0 = 0$ jest równy zero. 
+} Każdy bez trudu odpowie na to pytanie: dla ciągu Fibonacciego,  tylko dla $n=0$ wyraz $F_0 = 0$ jest równy zero. 
 \begin{equation}\label{fib}
     \begin{cases}
         F_{n} = F_{n-1} + F_{n-2} \\
@@ -35,7 +35,7 @@ Kolejne wyrazy ciągu Fibonacciego: $0, 1, 1, 2, 3, 5, 8, 13, \ldots$
         F_{0} = 0
     \end{cases}
 \end{equation}
-Kolejne wyrazy ciągu Fibonacciego $F_n$ zawsze będą dodatnie (suma wyrazów dodatnich jest dodatnia). Nie potrzebujemy do tego zaawansowanej matematyki. 
+Kolejne wyrazy ciągu Fibonacciego $F_n$ zawsze będą dodatnie (suma wyrazów dodatnich jest dodatnia). Dojście do tego wniosku nie wymaga zaawansowanej matematyki. 
 Czy odpowiedź na postawione wyżej pytanie dla dowolnego ciągu jest taka prosta?
 Rozważmy na przykład następujący ciąg: \marg{Kolejne wyrazy dla tego ciągu to: 0, 1, 2, 1, -4, -11, -10, 13, 56, 73, -22, -263 \ldots}
 \begin{equation}\label{ref:fib}
@@ -46,7 +46,7 @@ Rozważmy na przykład następujący ciąg: \marg{Kolejne wyrazy dla tego ciągu
     \end{cases}
 \end{equation}
 
-Na pierwszy rzut oka problem nie jest łatwy do rozstrzygnięcia. Wypisując kolejne wyrazy, możemy wysnuć hipotezę, że owy ciąg również poza pierwszym nie ma wyrazu równego zero. Problem można sformułować w ogólności dla większej liczby równań. Artykuł ten pokaże, że nawet dla prostych ciągów za rozwiązaniem stoi ciekawa matematyka. 
+Na pierwszy rzut oka problem nie jest łatwy do rozstrzygnięcia. Wypisując kolejne wyrazy, można wysnuć hipotezę, że ów ciąg, również poza pierwszym nie ma wyrazu równego zero. Problem można sformułować w ogólności dla większej liczby równań. Artykuł ten pokaże, że nawet dla prostych ciągów za rozwiązaniem stoi ciekawa matematyka. 
     
 
 \vfill
@@ -55,44 +55,44 @@ Na pierwszy rzut oka problem nie jest łatwy do rozstrzygnięcia. Wypisując kol
 \marg{Liniowa rekurencja jest fundamentem wielu pojęć w informatyce czy kombinatoryce. 
 }
 
-Aby zrozumieć lepiej ten problem, należy najpierw wprowadzić potrzebne definicje. Liniowy ciąg rekurencyjny to ciąg liczb całkowitych $u_0, u_1 \ldots \in \mathbb{Z}$, taki, że dla pewnych $a_0, \ldots, a_{k-1} \in \mathbb{Z}$, gdzie $a_0 \neq 0$ oraz dla każdego $n \geq k$ mamy $u_{n}=a_{0} u_{n-1}+a_{1} u_{n-2}+\ldots+a_{k-1} u_{n-k}$. Rząd takiego ciągu to $k$.
+Aby zrozumieć lepiej ten problem należy najpierw wprowadzić potrzebne definicje. Liniowy ciąg rekurencyjny to ciąg liczb całkowitych $u_0, u_1 \ldots \in \mathbb{Z}$, taki, że dla pewnych $a_0, \ldots, a_{k-1} \in \mathbb{Z}$, gdzie $a_0 \neq 0$ oraz dla każdego $n \geq k$, $u_{n}=a_{0} u_{n-1}+a_{1} u_{n-2}+\ldots+a_{k-1} u_{n-k}$. Rząd takiego ciągu to $k$.
 
-\textbf{Problem Skolema} to pytanie, czy dla danego liniowego ciągu rekurencyjego istnieje takie $n$, że $u_n = 0$?
+\textbf{Problem Skolema} to pytanie, czy dla danego liniowego ciągu rekurencyjego istnieje takie $n$, że $u_n = 0$.
 \marg{
 Albert Thoralf Skolem (ur. 23 maja 1887 w Sandsvaer, zm. 23 marca 1963)
 }
 
 Obecnie wiadomo, że problem Skolema jest rozstrzygalny dla ciągów rzędu $2$, $3$ i $4$, natomiast rozstrzygalność dla rzędu $5$ pozostaje nadal otwarta. Znamy jednak rozstrzygalność różnych podprzypadków nawet dla rzędu $5$. 
 
-Okazuje się, że już dla ciągów rzędu $2$ rozwiązanie nie jest trywialne. W artykule postaram się przedstawić intuicje stojące za ową nietrywialnością. Bardzo przydatne będzie, znane zapewne niektórym Czytelnikom, następujące twierdzenie dotyczące ciągów rekurencyjnych.
+Okazuje się, że już dla ciągów rzędu $2$ rozwiązanie nie jest trywialne. W artykule zostaną przedstawione intuicje stojące za ową nietrywialnością. Bardzo przydatne będzie, znane zapewne niektórym Czytelnikom, następujące twierdzenie dotyczące ciągów rekurencyjnych.
 
 \textbf{Twierdzenie:}
-Dla każdego liniowego ciągu rekurencyjnego $u_n$ rzędu $k$ można obliczyć
+Dla każdego liniowego ciągu rekurencyjnego $u_n$ rzędu $k$, można obliczyć
 niezerowe liczby zespolone $\lambda_1, \ldots, \lambda_j$
 oraz wielomiany $p_1, \ldots, p_j$ o współczynnikach algebraicznych
 \marg{
-    Powiemy, że liczba zespolona $a$ jest liczbą algebraiczną, jeżeli jest pierwiastkiem niezerowego wielomianu o współczynnikach wymiernych. Zbiór liczb algebraicznych oznaczmy jako $\mathbb{A}$. Liczba $\sqrt{2}$ jest pierwiastkiem wielomianu $p(x) = x^{2} - 2$, a liczba $i$ jest pierwiastkiem wielomianu $p(x) = x^2 + 1$.
-} takie, że:
+    Powiemy, że liczba zespolona $a$ jest liczbą algebraiczną, jeżeli jest pierwiastkiem niezerowego wielomianu o współczynnikach wymiernych. Zbiór liczb algebraicznych oznacza się jako $\mathbb{A}$. Liczba $\sqrt{2}$ jest pierwiastkiem wielomianu $p(x) = x^{2} - 2$, a liczba $i$ jest pierwiastkiem wielomianu $p(x) = x^2 + 1$.
+} takich że:
 \[
 u_n = p_1(n) \lambda_1^n + p_2(n) \lambda_2^n + … + p_j(n) \lambda_j^n,
 \]
-oraz
+oraz:
 \[
 \deg(p_1) + \ldots + \deg(p_j) \leq k-j,
 \]
-gdzie przez $\deg(p)$ oznaczamy stopień wielomianu $p$.
+gdzie przez $\deg(p)$ oznaczony jest stopień wielomianu $p$.
 
 
-Dla zainteresowanego Czytelnika znającego podstawowe narzędzia z algebry liniowej to twierdzenie nie jest trudne do udowodnienia. 
+Dla zainteresowanego Czytelnika, znającego podstawowe narzędzia z algebry liniowej, to twierdzenie nie jest trudne do udowodnienia. 
 
 
 \vfill
 \mtyt{Ciągi rekurencyjne rzędu 2}
 
 
-W dalszej części przedstawię techniki związane z rozwiązaniem problemu Skolema dla liniowego ciągu rekurencyjnego rzędu 2. Rozwiązanie będzie zależało od współczynników, które występują w twierdzeniu powyżej.
+W dalszej części przedstawione zostaną techniki związane z rozwiązaniem problemu Skolema dla liniowego ciągu rekurencyjnego rzędu 2. Rozwiązanie będzie zależało od współczynników, które występują w twierdzeniu powyżej.
 %Prześledzimy je na kilku przykładach, które zilustrują techniki rozwiązywania naszego problemu w różnych przypadkach.
-Z powyższego twierdzenia otrzymujemy, że $j \leq 2$, gdyż suma stopni wielomianów $p_i$ musi być nieujemna. Rozważymy kilka przypadków w zależności od wartości $j$ oraz liczb $\lambda_i$.
+Z powyższego twierdzenia wynika, że $j \leq 2$, gdyż suma stopni wielomianów $p_i$ musi być nieujemna. Rozważonych zostanie kilka przypadków w zależności od wartości $j$ oraz liczb $\lambda_i$.
 
 
 \textbf{Wartość $j=1$}\\
@@ -100,29 +100,29 @@ Z twierdzenia wynika, że
 \[
 u_n = (an+b) \lambda_1^n.
 \]
-Przypomnijmy, że $\lambda_1 \neq 0$.
+Należy przypomnieć, że $\lambda_1 \neq 0$.
 A zatem jeśli $u_n = 0$, to $(an+b) = 0$, co po przekształceniu daje $n = -\frac{a}{b}$ i kończy rozumowanie w tym przypadku.
 
 \textit{Uwaga.}
-W pozostałych przypadkach mamy $j > 1$, a zatem $j = 2$. Wówczas
+W pozostałych przypadkach $j > 1$, a zatem $j = 2$. Wówczas
 \[
 u_n = p_1(n) \lambda_1^n + p_2(n) \lambda_2^n,
 \]
-gdzie $\deg(p_1) + \deg(p_2) = 0$. A więc wielomiany $p_1$ oraz $p_2$ są stałe, czyli ciąg $u_n$ ma postać
+gdzie $\deg(p_1) + \deg(p_2) = 0$. Wielomiany $p_1$ oraz $p_2$ są więc stałe, czyli ciąg $u_n$ ma postać
 \[
 u_n = c_1 \lambda_1^n + c_2 \lambda_2^n.
 \]
 
 \textbf{Wartość $j=2$ oraz $|\lambda_1| \neq |\lambda_2|$}\\
-Nawiązując do wcześniejszej uwagi, ciąg jest postaci:
+Nawiązując do wcześniejszej uwagi, ciąg przyjmuje postać:
 \[
     u_n = c_1 \lambda_1^{n} + c_2 \lambda_{2}^n.
 \]
-Przyjmijmy, że $|\lambda_1| \neq |\lambda_2|$. A zatem jeśli $u_n = 0$ to $a_1 \lambda_1^n = - a_2 \lambda_2^n$. Co równoważnie daje:
+Należy przyjąć, że $|\lambda_1| \neq |\lambda_2|$. W związku z tym, jeśli $u_n = 0$ to $a_1 \lambda_1^n = - a_2 \lambda_2^n$. Co równoważnie daje:
 \[
     \frac{-c_1}{c_2} = (\large\frac{\lambda_2}{\lambda_1})^{n}.
 \]
-Bez straty ogólności możemy założyć, że, $|\lambda_1|>|\lambda_2|$. Wówczas powyżej pewnego $n$ nie ma szans na równość. 
+Bez straty ogólności można założyć, że, $|\lambda_1|>|\lambda_2|$. Wówczas powyżej pewnego $n$ nie ma szans na równość. 
 
 
 
@@ -140,33 +140,33 @@ Bez straty ogólności możemy założyć, że, $|\lambda_1|>|\lambda_2|$. Wówc
 
 
 \textbf{Wartość $j=2$ oraz $|\lambda_1| = |\lambda_2|$}\\
-Przed nami najciekawsza część, przypadek gdy $|\lambda_1| = |\lambda_2|$, ale $\lambda_1 \neq \lambda_2$.
-Rozważmy nasz przykład (\ref{ref:fib}) ze wstępu. 
+Teraz nastąpi najciekawsza część, przypadek gdy $|\lambda_1| = |\lambda_2|$, ale $\lambda_1 \neq \lambda_2$.
+W tym miejscu warto wrócić do przykładu (\ref{ref:fib}) ze wstępu. 
 Można nietrudno obliczyć, że: $c_1 = \frac{i}{2\sqrt{2}}$, $c_2 = \frac{-i}{2\sqrt{2}}$, $\lambda_1 = 1 - i\sqrt{2}$ oraz $\lambda_2 = 1 + i \sqrt{2}$.
 
-A zatem nasz liniowy ciąg rekurencyjny ma postać:\marg{Zainteresowany Czytelnik może przeczytać o liczbach zespolonych: \href{http://www.deltami.edu.pl/temat/matematyka/algebra/2016/09/30/Liczby_zespolone_i_kwaterniony/}{Delta, październik 2016:
+A zatem omawiany liniowy ciąg rekurencyjny ma postać:\marg{Zainteresowany Czytelnik może przeczytać o liczbach zespolonych: \href{http://www.deltami.edu.pl/temat/matematyka/algebra/2016/09/30/Liczby_zespolone_i_kwaterniony/}{Delta, październik 2016:
 Liczby zespolone i kwaterniony}}
 \begin{equation*}
     u_{n} = \frac{i}{2 \sqrt{2}}(\lambda_{1}^{n}- \lambda_2^{n})
 \end{equation*}
-Przeniesiemy teraz nasze rozważania na grunt uogólniony. Mianowicie można nietrudno pokazać, że w naszym przypadku $\lambda_1 = \overline{\lambda_2}$ oraz $c_1 = \overline{c_2}$. Zatem
-nasz ciąg będzie przyjmował postać $u_n = c \lambda^{n} + \overline{c} \overline{\lambda}^{n}$, dla pewnej liczby algebraicznej $c \in \mathbb{A}$ i liczby zespolonej $\lambda$.
+Przeniesiemy teraz nasze rozważania na grunt uogólniony. Można nietrudno pokazać, że w omawianym przypadku $\lambda_1 = \overline{\lambda_2}$ oraz $c_1 = \overline{c_2}$. Zatem
+opisany ciąg będzie przyjmował postać $u_n = c \lambda^{n} + \overline{c} \overline{\lambda}^{n}$, dla pewnej liczby algebraicznej $c \in \mathbb{A}$ i liczby zespolonej $\lambda$.
 
-Pytając się o warunek $u_n = 0$, możemy zauważyć, że $c \lambda^{n} + \overline{c} \overline{\lambda}^{n} = 0 $ wtedy i tylko wtedy, gdy część rzeczywista $c {\lambda^{n}}$ jest równa $0$. Niech $v = \frac{\lambda}{|\lambda|}$ wówczas $|v| = 1$.
+Pytając się o warunek $u_n = 0$, można zauważyć, że $c \lambda^{n} + \overline{c} \overline{\lambda}^{n} = 0 $ wtedy i tylko wtedy, gdy część rzeczywista $c {\lambda^{n}}$ jest równa $0$. Niech $v = \frac{\lambda}{|\lambda|}$ wówczas $|v| = 1$.
 Zamiast badać, czy $u_n = 0$ będziemy teraz badać, czy $\frac{u_n}{\lambda^n} = 0$, co jak łatwo zauważyć jest równoważnym pytaniem.
-Zauważmy, że
+Należy zauważyć, że
 $\frac{u_n}{\lambda^n} = c v^n + \overline{c} \overline{v}^n$.
 Wystarczy sprawdzić, czy $c v^{n} + \overline{c} \overline{v} ^{n} = 0$.
-To zaś jest równoważne temu, że $c v^{n}$ jest czysto urojone (postaci $ix$ dla $x \in \mathbb{R}$). Ponieważ $|v| = 1$, to musi być $x = |c|$. Pytamy więc, czy istnieje takie $n$, że $c v^{n} = i |c|$, czyli $v^n = \frac{i |c|}{c}$.
+To zaś jest równoważne temu, że $c v^{n}$ jest czysto urojone (postaci $ix$ dla $x \in \mathbb{R}$). Ponieważ $|v| = 1$, to musi być $x = |c|$. Powstaje więc pytanie, czy istnieje takie $n$, że $c v^{n} = i |c|$, czyli $v^n = \frac{i |c|}{c}$.
 
-Pozostaje nam rozwiązać równanie postaci:
+Aby na nie odpowiedzieć, trzeba rozwiązać następujące równanie:
 \begin{equation*}
     v^{n} = \beta, \text{ gdzie } v, \beta \in \A, |v| = 1 \text{ oraz } \beta = \frac{|c|}{|c|}= 1.
 \end{equation*}
 To w ogólności wymaga pochylenia się nad teorią liczb algebraicznych.
-Mimo, że to pytanie wydaje się proste, to jego rozwiązanie wymaga wprowadzenia pomysłowych norm mierzących wielkość liczb (innych niż wartość bezwzględna danej liczby) i opierających się na ideałach pierwszych w ciele liczb algebraicznych. Jest to bardzo ciekawa technika, ale opowiedzenie o niej zajęłoby przynajmniej kilka stron w Delcie. Zainteresowanych Czytelników odsyłam do artykułu: \textit{On the Skolem Problem and Prime Powers} autorstwa Georga Kenison, Richarda J. Lipton, Joëla Ouaknine, i Jamesa Worrell.
+Mimo, że to pytanie wydaje się proste, to jego rozwiązanie wymaga wprowadzenia pomysłowych norm mierzących wielkość liczb (innych niż wartość bezwzględna danej liczby) i opierających się na ideałach pierwszych w ciele liczb algebraicznych. Jest to bardzo ciekawa technika, ale opowiedzenie o niej zajęłoby przynajmniej kilka stron. Zainteresowanych Czytelników odsyłam do artykułu: \textit{On the Skolem Problem and Prime Powers} autorstwa Georga Kenisona, Richarda J. Liptona, Joëla Ouaknine'a, i Jamesa Worrella.
 
-Dla ciągów rekurencyjnych rzędu $k=3$ również znamy algorytm bazujący na podobnych rozumowaniach, jednak w ogólności dla $k>5$ nie jest znane żadne rozwiązanie problemu Skolema. Nawet dla rzędu $k=2$ ostatni przypadek opiera się na algebraicznej teorii liczb. Sam dowód wcześniejszego twierdzenia wykorzystuje podstawy algebry liniowej, a sformułowanie problemu jest bliskie problemowi stopu, co ciekawie pokazuje, że ten problem staje się interdyscyplinarny i wymaga znajomości kilku dziedzin zarówno z matematyki, jak i z informatyki. 
+Dla ciągów rekurencyjnych rzędu $k=3$ również znamy jest algorytm bazujący na podobnych rozumowaniach, jednak w ogólności dla $k>5$ nie jest znane żadne rozwiązanie problemu Skolema. Nawet dla rzędu $k=2$ ostatni przypadek opiera się na algebraicznej teorii liczb. Sam dowód wcześniejszego twierdzenia wykorzystuje podstawy algebry liniowej, a sformułowanie problemu jest bliskie problemowi stopu, co ciekawie pokazuje, że ten problem staje się interdyscyplinarny i wymaga znajomości kilku dziedzin, zarówno zakresu matematyki, jak i z informatyki. 
 
 
 \end{document}
